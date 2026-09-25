@@ -1,0 +1,34 @@
+<!doctype html>
+<html lang="pt-BR" data-theme="light">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <title>Costane Viagens | Agência de viagens em Barretos-SP</title>
+    <meta name="description" content="Roteiros organizados e acompanhamento próximo, da conferência da documentação ao embarque e ao retorno. Viaje sem medo com a Costane Viagens, em Barretos-SP." />
+    <meta name="theme-color" content="#F5F7FB" />
+    <link rel="icon" type="image/png" href="brand/favicon.png" />
+    <link rel="apple-touch-icon" href="brand/apple-touch-icon.png" />
+    <!-- Tema inicial antes do React montar (evita "flash"): ?theme=dark|light > localStorage > prefers-color-scheme -->
+    <script>
+      (function () {
+        var t = 'light';
+        try {
+          var p = new URLSearchParams(location.search).get('theme');
+          var s = localStorage.getItem('bento-theme');
+          if (p === 'dark' || p === 'light') t = p;
+          else if (s === 'dark' || s === 'light') t = s;
+          else if (window.matchMedia && matchMedia('(prefers-color-scheme: dark)').matches) t = 'dark';
+        } catch (e) { /* storage bloqueado */ }
+        document.documentElement.setAttribute('data-theme', t);
+      })();
+    </script>
+    <link rel="preconnect" href="https://fonts.googleapis.com" />
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+    <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&family=Space+Grotesk:wght@500;600;700&display=swap" />
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.2/css/all.min.css" />
+  </head>
+  <body>
+    <div id="root"></div>
+    <script type="module" src="/src/main.tsx"></script>
+  </body>
+</html>
