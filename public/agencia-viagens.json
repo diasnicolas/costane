@@ -290,14 +290,6 @@
     ],
     "fotos": [
       {
-        "url": "img/claudia-viagem.webp",
-        "miniatura": "img/claudia-viagem-mini.webp",
-        "titulo": "Cláudia pelo mundo",
-        "local": "Uma das viagens solo da nossa cofundadora",
-        "categoria": "Praias",
-        "alt": "Cláudia Costa sentada na proa de um barco em mar azul-turquesa cercado por montanhas"
-      },
-      {
         "url": "https://images.unsplash.com/photo-1507525428034-b723cf961d3e?auto=format&fit=crop&w=1600&q=80",
         "miniatura": "https://images.unsplash.com/photo-1507525428034-b723cf961d3e?auto=format&fit=crop&w=600&h=600&q=80",
         "titulo": "Praias paradisíacas",
