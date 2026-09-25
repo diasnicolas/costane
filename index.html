@@ -8,7 +8,7 @@
     <meta name="theme-color" content="#F5F7FB" />
     <link rel="icon" type="image/png" href="brand/favicon.png" />
     <link rel="apple-touch-icon" href="brand/apple-touch-icon.png" />
-    <!-- Tema inicial antes do React montar (evita "flash"): ?theme=dark|light > localStorage > prefers-color-scheme -->
+    <!-- Tema inicial antes do React montar (evita "flash"): ?theme=dark|light > localStorage > claro (padrão) -->
     <script>
       (function () {
         var t = 'light';
@@ -17,7 +17,6 @@
           var s = localStorage.getItem('bento-theme');
           if (p === 'dark' || p === 'light') t = p;
           else if (s === 'dark' || s === 'light') t = s;
-          else if (window.matchMedia && matchMedia('(prefers-color-scheme: dark)').matches) t = 'dark';
         } catch (e) { /* storage bloqueado */ }
         document.documentElement.setAttribute('data-theme', t);
       })();

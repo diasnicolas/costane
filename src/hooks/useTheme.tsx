@@ -18,10 +18,8 @@ const readParam = (): Theme | null => {
   return p === 'dark' || p === 'light' ? p : null;
 };
 
-const systemTheme = (): Theme => (window.matchMedia('(prefers-color-scheme: dark)').matches ? 'dark' : 'light');
-
-/** Prioridade: ?theme=dark|light > localStorage > preferência do sistema. */
-export const initialTheme = (): Theme => readParam() ?? readStored() ?? systemTheme();
+/** Prioridade: ?theme=dark|light > localStorage > claro (padrão; o escuro só pelo botão). */
+export const initialTheme = (): Theme => readParam() ?? readStored() ?? 'light';
 
 interface ThemeCtx {
   theme: Theme;
@@ -34,7 +32,7 @@ export function ThemeProvider({ children }: { children: ReactNode }) {
   const [theme, setTheme] = useState<Theme>(initialTheme);
   const animate = useRef(false);
 
-  // Aplica o tema no <html> (+ transição suave quando muda por ação do usuário/sistema)
+  // Aplica o tema no <html> (+ transição suave quando muda pelo botão)
   useEffect(() => {
     const root = document.documentElement;
     let timer = 0;
@@ -49,18 +47,6 @@ export function ThemeProvider({ children }: { children: ReactNode }) {
       root.classList.remove('theme-anim');
     };
   }, [theme]);
-
-  // Segue o sistema enquanto o usuário não escolheu nem há ?theme=
-  useEffect(() => {
-    const mq = window.matchMedia('(prefers-color-scheme: dark)');
-    const onChange = (e: MediaQueryListEvent) => {
-      if (readStored() || readParam()) return;
-      animate.current = true;
-      setTheme(e.matches ? 'dark' : 'light');
-    };
-    mq.addEventListener('change', onChange);
-    return () => mq.removeEventListener('change', onChange);
-  }, []);
 
   const toggle = useCallback(() => {
     animate.current = true;
